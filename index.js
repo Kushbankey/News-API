@@ -1,6 +1,4 @@
 import express from "express";
-import axios from "axios";
-import * as cheerio from "cheerio";
 import puppeteer from "puppeteer";
 
 const port=3000;
@@ -59,33 +57,6 @@ async function scrapeNewspapers() {
 app.get("/", (req,res) => {
     res.json(`Welcome to the NEWS hub!`);
 });
-
-/*
-app.get("/news", async(req,res) => {
-    try{
-        const response=await axios.get("https://www.thehindu.com/latest-news");
-        const html=response.data;
-        const $=cheerio.load(html);
-        console.log(html);
-
-        $("#sectiondivtrend",html).each(function(){
-            const title=$(this).text();
-            const url=$(this).attr('href');
-
-            articles.push({
-                title,
-                url
-            });
-        });
-
-        //console.log(articles);
-        res.json(articles);
-    }
-    catch{
-        res.status(500).json({ message: "Error fetching post" });
-    }
-});
-*/
 
 app.get("/news", async (req, res) => {
     try {
